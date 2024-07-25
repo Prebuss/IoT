@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    position: sticky;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    position: sticky;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+    position: sticky;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    position: sticky;
+}
+
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding-bottom: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+section h2 {
+    color: #333;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    /* position: fixed; */
+    width: 100%;
+    bottom: 0;
+}
+
+/*
+nav {
+    padding: 1.5rem 2rem;
+    background-color: #222831;
+    color: #fff;
+}
+
+.checkbtn {
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+}
+
+.nav-mobile {
+    display: none;
+}
+
+#check:checked ~ .nav-mobile {
+    display: block;
+}
+
+.nav-mobile {
+    position: absolute;
+    top: 4.5rem;
+    left: 0;
+    background: #222831;
+    z-index: 1;
+    width: 200px;
+}
+   .nav-mobile a {
+    color: #fff;
+    padding: 1rem 1.5rem;
+    display: block;
+}
+
+@media only screen and (max-width: 992px) {
+    .checkbtn {
+    display: block;
+    font-size: 5rem;
+    position: fixed;
+    top: 30px;
+    left: 40px;
+    }
+   .nav-mobile {
+    top: 160px;
+    width: 100%;
+    }
+   .nav-mobile a {
+    font-size: 2rem;
+    padding: 2rem 3rem;
+    }
+}
+*/
