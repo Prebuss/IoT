@@ -154,3 +154,16 @@ footer {
         margin-left: 200px;
     }
 }
+
+ol {
+    padding-left: 20px; /* Adjust padding to align numbers properly */
+    list-style-position: inside; /* Ensure numbers align with text */
+}
+
+ol li {
+    margin-bottom: 10px; /* Optional: Add space between list items for better readability */
+}
+
+figcaption {
+    text-align: center;
+}

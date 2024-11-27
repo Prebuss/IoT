@@ -37,49 +37,145 @@
         <main>
             <section id="introduction">
                 <h2>Introduction</h2>
-                <p>Brief introduction to the project and its objectives.</p>
+                <!--<p>Brief introduction to the project and its objectives.</p>-->
+				<p>Setpoint tracking is usually done using a PLC as a PID controller, but due to PLCs having a 
+					high price and a high power requirement, they might be overkill for project that do not need the 
+					computational power. Microcontrollers are low power low cost alternatives typically used to 
+					control simpler systems. 
+				</p>
+				<p>Arduino is a platform of microcontrollers that are installed on a PCB and focuses on making 
+					microcontrollers more available for people and easier to code.</p>
+                <p>This report will focus on an Arduino based system made to control an airheater as a PID controller.
+                </p>
             </section>
 
             <section id="problem-description">
                 <h2>Problem Description</h2>
-                <p>Detailed description of the problem addressed in the lab work.</p>
+                <!--<p>Detailed description of the problem addressed in the lab work.</p>-->
+                <p>
+                    The problem description was to control an airheater using an Arduino board and send the data to
+                    an online database called ThingSpeak. This requires the Arduino to measure the output temperature 
+                    of the airheater and control the temperature setpoint of the airheater using a 0-5V voltage. 
+                    In addition a wifi or mobile data connection is required to send the data.
+                </p>  
+                <br>  
+                <p>
+                    Although a lot of different PID libraries already exist for Arduino, the objective was to make a PID 
+                    from scratch and save it as an Arduino library to use later. In addition to PID controller the system
+                    should use a lowpass filter to smooth the temperature measurements. 
+                </p>
+                <p>
+                    <!--wifi-->
+
+                    Measured data from the control system should be logged in the ThingSpeak database over wifi.
+                </p>
+                <p>
+                    <!--Setpoint-->
+                    Changing the setpoint is a benefit in a system like this. That way the system does not always go towards a 
+                    single same value every time it runs. For an airheater such as this, the desired temperature will change
+                    depending on external factors.
+                </p>
+                <p>
+                    <!--PID parameters-->
+                </p>
+                <p>
+                    <!--HMI/Labview-->
+                    Arduino is made to be programmed using the Arduino IDE. This is a software that is specifically made to 
+                    connect to and program Arduino boards. Arduino's language is a based on the C/C++ programming languages 
+                    with some special functions made for Arduinos.
+                </p>
+                <br>
+                <p>
+                    An alternative to Arduino IDE is a Labview plugin called Linx - Labview MakerHub.
+                </p>
+                <p>
+                    Linx is made to program Arduinos using the Labview programming language and has a lot of the basic 
+                    functions that are present in the Arduino language. An advantage of Labview is the block diagram coding 
+                    that gives a good overview of how the code works and can be easier for people that are not used to 
+                    typical written coding.
+                </p>
             </section>
 
             <section id="materials-methods">
                 <h2>Materials and Methods</h2>
-                <p>Overview of the materials and methods used in the project.</p>
+                <!--<p>Overview of the materials and methods used in the project.</p>-->
+                <p>
+                    This system is based around two Arduino boards, each with their own task. Arduino Uno R3 (shown in figure 1)
+                    has 5V PWM output that is used to control the temperature on the airheater. Uno can also take 5V input to 
+                    read the temperature sensor of the airheater. 
+                </p>
+                <p>
+                    To send the data to ThingSpeak a second Arduino is implemented to the system. For wifi an 
+                    Arduino Nano IoT 33 RP2040 (shown in figure 2) is implemented to read the messages from the Arduino Uno 
+                    and send the data to ThingSpeak. The Uno uses I2C, a wired short distance protocol to send data between 
+                    devices. This allows the Uno to have a specific task, reading and controlling the airheater, and the Nano 
+                    will only receive data from the Uno to send to the database. 
+                </p>
+                <p>
+                    Airheater
+                </p>
                 <figure>
-                    <img src="pi5" alt="Example Image" style="width: 700px; min-width: 330px" />
-                    <figcaption>Figure 1: Example of the system developed.</figcaption>
+                    <img src="UNOR3.webp" alt="Figure of an Arduino Uno R3." style="width: 700px; min-width: 330px" />
+                    <figcaption>Figure 1: Overview of the Arduino Uno. </figcaption>
                 </figure>
-				<p>More text after figure.</p>
+                <figure>
+                    <img src="NanoRP2040.webp" alt="Figure of an Arduio Nano IoT 33 RP2040." style="width: 700px; min-width: 330px" />
+                    <figcaption>Figure 2: Overview of the Arduino Nano IoT 33 RP2040.</figcaption>
+                </figure>
+                <figure>
+                    <img src="TMP36.jpg" alt="Figure of a TMP36 temperature sensor." style="width: 700px; min-width: 330px" />
+                    <figcaption>Figure 3: Example of a temperature sensor, a TMP36.</figcaption>
+                </figure>
+                <p>
+                    System overview
+                </p>
+                <figure>
+                    <img src="SystemDiagram" alt="Overview of the system in the form of a line diagram." style="width: 700px; min-width: 330px" />
+                    <figcaption>Figure 4: System overview diagram.</figcaption>
+                </figure>
+				<p>
+                    How its made
+                </p>
+                <figure>
+                    <img src="" alt="">
+                    <figcaption>Figure 5: The connected system.</figcaption>
+                </figure>
+                <p>
+                    Theroy about PID and lowpass filter.
+                </p>
             </section>
 
             <section id="results">
                 <h2>Results</h2>
                 <p>Presentation of the results obtained from the lab work.</p>
                 <figure>
-                    <img src="" alt="Example Image" style="width: 700px; min-width: 330px" />
-                    <figcaption>Figure 2: Results of the experiment.</figcaption>
+                    <img src="Results.png" alt="Diagram of every measured temperature reading shown in ThingSpeak." style="width: 700px; min-width: 330px" />
+                    <figcaption>Figure 5: Data received and read through ThingSpeak.</figcaption>
                 </figure>
             </section>
 
             <section id="discussion">
                 <h2>Discussion</h2>
-                <p>Discussion of the results and their implications.</p>
+                <!--<p>Discussion of the results and their implications.</p>-->
+                <p>
+
+                </p>
             </section>
 
             <section id="conclusion">
                 <h2>Conclusion</h2>
-                <p>Conclusion summarizing the main findings and outcomes.</p>
+                <!--<p>Conclusion summarizing the main findings and outcomes.</p>-->
+                <p>
+
+                </p>
             </section>
 
             <section id="references">
                 <h2>References</h2>
-                <ul>
+                <ol>
                     <li><a href="https://www.halvorsen.blog/documents/teaching/courses/iot/website.php">Halvorsen.Blogg Assignment page</a></li>
                     <li><a href="https://www.example.com">Example page</a></li>
-                </ul>
+                </ol>
             </section>
         </main>
 
