@@ -167,3 +167,10 @@ ol li {
 figcaption {
     text-align: center;
 }
+
+img {
+    max-width: 100%; /* Ensures image does not exceed container width */
+    height: auto;    /* Maintains aspect ratio */
+    display: block;  /* Removes inline spacing issues */
+    margin: 0 auto;  /* Centers the image if needed */
+}
