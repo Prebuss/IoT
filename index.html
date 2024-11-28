@@ -138,7 +138,7 @@
                     <figcaption>Figure 4: An LCD screen similar to the one used in the system.</figcaption>
                 </figure>
                 <p>
-                    Airheater was provided by USN (shown in figure 4) and is a premade system built up of an electric heating 
+                    Airheater was provided by USN (shown in figure 5) and is a premade system built up of an electric heating 
                     element, temperature sensor and an NI control system. It takes 0-5V as input for changing the electrical
                     heating element power and sends out a 1-5V output based on the temperature measured. Temperature range 
                     measured in the airheater is 20-50&deg;C.
@@ -148,11 +148,11 @@
                     <figcaption>Figure 5: System overview of airheater process.</figcaption>
                 </figure>
                 <p>
-                    A total overview of the system can be seen in figure 5. Is shows how two Arduino boards are connected and
+                    A total overview of the system can be seen in figure 6. Is shows how two Arduino boards are connected and
                     what they each are connected to. 
                 </p>
                 <figure>
-                    <img src="SystemDiagram" alt="Overview of the system in the form of a line diagram." style="width: 700px; min-width: 330px" />
+                    <img src="System diagram.png" alt="Overview of the system in the form of a line diagram." style="width: 700px; min-width: 330px" />
                     <figcaption>Figure 6: System overview diagram.</figcaption>
                 </figure>
                 <!--
@@ -165,8 +165,8 @@
             <section id="results">
                 <h2>Results</h2>
                 <p>
-                    During testing the PID controller worked as expected. It would turn on the heating element when the 
-                    temperature reading was away from the setpoint, and would gradually turn the heating element power down 
+                    During testing, the PID controller worked as expected. It would turn on the heating element when the 
+                    temperature reading deviated from the setpoint, and would gradually turn the heating element power down 
                     when the temperature got closer to the set point. 
                 </p>
                 <p>
@@ -181,6 +181,18 @@
                     <img src="Results.png" alt="Diagram of every measured temperature reading shown in ThingSpeak." style="width: 700px; min-width: 330px" />
                     <figcaption>Figure 7: Data received and read through ThingSpeak.</figcaption>
                 </figure>
+                <p>
+                    When programmed in Labview the system had the same features as when programmed in Arduino. This was a
+                    result of just the Uno being programmed in Labview with the control gains being the same for both versions.
+                    The labview programmed Uno was never tested on the physical airheater due to the labview system being
+                    difficult to work with. It required the plug in to be set up again every time the software was opened
+                    again. When testing it without the airheater it worked as expected with voltage measurements showing 
+                    similar values to the output values in Labview.
+                </p>
+                <figure>
+                    <img src="Labview linx frontpanel.png" alt="A Labview frontpanel for controlling the PID controller" style="width: 700px; min-width: 330px" />
+                    <figcaption>Figure 8: Labview frontpanel for the Arduino PID controller.</figcaption>
+                </figure>
             </section>
 
             <section id="discussion">
@@ -189,6 +201,33 @@
                 <p>
                     Poorly tuned but who cares when the system is so slow. For a more dynamic system an Arduino could probably 
                     not be suitable as a PID controller do to the computations needed for dynamic systems.
+                </p>
+                <p>
+                    Lowpass filter on the temperature reading helped improve the stability of what temperature was read. It removed 
+                    some noise from the measurements and kept the temperature stable around the measured value. Without it the readings 
+                    would be a lot more unstable than what could be seen in the results. Lowpass filter worked well, but could have been 
+                    tuned slightly to be more resilient to noise.
+                </p>
+                <br>
+                <p>
+                    An early prototype of the system planned to use an Arduino MKR NB 1500. It is a board with near band LTE integrated
+                    to handle both sending data to ThingSpeak and controlling the airheater. When working on this a problem with sending
+                    data to ThingSpeak was noticed as it would only send data one or two times before the board stopped. This seems to
+                    be a problem with the boards modem that crashes after some time. Other programs that does not use the modem will
+                    function for a long time, but programs with the modem lock up. This could be a firmware issue, as the firmware
+                    on the board was not up to date during testing.
+                <br>
+                    Other issues was related to the airheater requiring 0-5V analog input to control it and a 1-5V output to read the 
+                    temperature sensor. MKR boards do not support 5V analog input or output, making the reading and controlling of the 
+                    airheater system difficult.
+                </p>
+                <p>
+                    Labview Linx was another reason the MKR board was not used, as the Linx plug in only supports a set of older Arduino
+                    boards such as the Uno and does not support wifi on any boards. Using an Uno and Nano together would allow the same 
+                    online functionallity as long as the Uno could send data over I2C to the Nano board. 
+                </p>
+                <p>
+                    Improvements/Future works
                 </p>
             </section>
 
@@ -212,7 +251,7 @@
         </main>
 
         <footer>
-            <p>&copy; 2024 IoT Lab Project</p>
+            <p>2024 Arduino IoT Lab Project - Preben Forsland</p>
         </footer>
     </div>
 
