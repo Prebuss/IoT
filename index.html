@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IoT Lab Work Overview</title>
+    <title>Arduino PID controller</title>
     <!-- Link to your CSS file -->
     <link rel="stylesheet" href="styles.css" />
 </head>
@@ -71,7 +71,7 @@
                 </p>
                 <p>
                     <!--Setpoint-->
-                    Changing the setpoint is a benefit in a system like this. That way the system does not always go towards a 
+                    Changing the setpoint is essential in a system like this. That way the system does not always go towards a 
                     single same value every time it runs. For an airheater such as this, the desired temperature will change
                     depending on external factors.
                 </p>
@@ -104,6 +104,10 @@
                     has 5V PWM output that is used to control the temperature on the airheater. Uno can also take 5V input to 
                     read the temperature sensor of the airheater. 
                 </p>
+                <figure>
+                    <img src="UNOR3.webp" alt="Figure of an Arduino Uno R3." style="width: 700px; min-width: 330px" />
+                    <figcaption>Figure 1: Overview of the Arduino Uno. </figcaption>
+                </figure>
                 <p>
                     To send the data to ThingSpeak a second Arduino is implemented to the system. For wifi an 
                     Arduino Nano IoT 33 RP2040 (shown in figure 2) is implemented to read the messages from the Arduino Uno 
@@ -112,49 +116,61 @@
                     will only receive data from the Uno to send to the database. 
                 </p>
                 <figure>
-                    <img src="UNOR3.webp" alt="Figure of an Arduino Uno R3." style="width: 700px; min-width: 330px" />
-                    <figcaption>Figure 1: Overview of the Arduino Uno. </figcaption>
-                </figure>
-                <figure>
                     <img src="NanoRP2040.webp" alt="Figure of an Arduio Nano IoT 33 RP2040." style="width: 700px; min-width: 330px" />
                     <figcaption>Figure 2: Overview of the Arduino Nano IoT 33 RP2040.</figcaption>
                 </figure>
+                During testing of the systems performance a TMP36 temperature sensor (shown in figure 3) was used as the 
+                control input to the system and voltage out was written to the serial monitor in Arduino IDE and it was measured
+                using a multimeter to ensure the output was the same as expected.
                 <figure>
                     <img src="TMP36.jpg" alt="Figure of a TMP36 temperature sensor." style="width: 700px; min-width: 330px" />
                     <figcaption>Figure 3: Example of a temperature sensor, a TMP36.</figcaption>
                 </figure>
                 <p>
-                    Airheater was provided by USN and is a premade system built up of an electric heating element, temperature 
-                    sensor and an NI control system. It takes 0-5V as input for changing the electrical heating element power 
-                    and sends out a 1-5V output based on the temperature measured. Temperature range measured in the airheater
-                    is 0-50&deg;C.
+                    Showing what data is being sent to ThingSpeak was done by connecting a 1.4 inch LCD display to the 
+                    Nano board. Every datapoint sent to ThingSpeak was shown on the display to act as a human machine interface
+                    (HMI). ThingSpeak allows new datapoints every 15 seconds if the user is running a free account. This 
+                    allows the HMI screen to work well with few updates.
+                </p>
+                <figure>
+                    <img src="LcdScreen.jpeg" alt="Image showing a small LCD screen 1.4 inch." style="width: 700px; min-width: 330px">
+                </figure>
+                <p>
+                    Airheater was provided by USN (shown in figure 4) and is a premade system built up of an electric heating 
+                    element, temperature sensor and an NI control system. It takes 0-5V as input for changing the electrical
+                    heating element power and sends out a 1-5V output based on the temperature measured. Temperature range 
+                    measured in the airheater is 20-50&deg;C.
                 </p>
                 <figure>
                     <img src="Airheater.png" alt="Drawn system overview of the airheater process"style="width: 700px; min-width: 330px">
                     <figcaption>Figure 4: System overview of airheater process.</figcaption>
                 </figure>
                 <p>
-                    System overview
+                    A total overview of the system can be seen in figure 5. Is shows how two Arduino boards are connected and
+                    what they each are connected to. 
                 </p>
                 <figure>
                     <img src="SystemDiagram" alt="Overview of the system in the form of a line diagram." style="width: 700px; min-width: 330px" />
                     <figcaption>Figure 5: System overview diagram.</figcaption>
                 </figure>
-				<p>
-                    How its made
-                </p>
-                <figure>
-                    <img src="" alt="">
-                    <figcaption>Figure 6: The connected system.</figcaption>
-                </figure>
+                <!--
                 <p>
                     Theory about PID and lowpass filter.
                 </p>
+                -->
             </section>
 
             <section id="results">
                 <h2>Results</h2>
-                <p>Presentation of the results obtained from the lab work.</p>
+                <p>
+                    During testing the PID controller worked as expected. It would turn on the heating element when the 
+                    temperature reading was away from the setpoint, and would gradually turn the heating element power down 
+                    when the temperature got closer to the set point. 
+                </p>
+                <p>
+                    As a PID controller it was not well tuned. It would have been tuned using the ziegler nichols method.
+                    This was not done. Instead an arbitrary gain value was chosen for each part of the PID controller.
+                </p>
                 <figure>
                     <img src="Results.png" alt="Diagram of every measured temperature reading shown in ThingSpeak." style="width: 700px; min-width: 330px" />
                     <figcaption>Figure 5: Data received and read through ThingSpeak.</figcaption>
@@ -165,7 +181,7 @@
                 <h2>Discussion</h2>
                 <!--<p>Discussion of the results and their implications.</p>-->
                 <p>
-
+                    
                 </p>
             </section>
 
@@ -173,7 +189,9 @@
                 <h2>Conclusion</h2>
                 <!--<p>Conclusion summarizing the main findings and outcomes.</p>-->
                 <p>
-
+                    Arduino works as a PID controller. Could be better tuned. For internett access an IoT board is needed.
+                    Labview was not preffered and worked, but not very well. I2C made the system easier to work with as the 
+                    workload was spread out to different boards.
                 </p>
             </section>
 
