@@ -53,7 +53,7 @@
                 <h2>Problem Description</h2>
                 <!--<p>Detailed description of the problem addressed in the lab work.</p>-->
                 <p>
-                    The problem description was to control an airheater using an Arduino board and send the data to
+                    The problem description <a href="#ref1">[1]</a> was to control an airheater using an Arduino board and send the data to
                     an online database called ThingSpeak. This requires the Arduino to measure the output temperature 
                     of the airheater and control the temperature setpoint of the airheater using a 0-5V voltage. 
                     In addition a wifi or mobile data connection is required to send the data.
@@ -100,7 +100,7 @@
                 <h2>Materials and Methods</h2>
                 <!--<p>Overview of the materials and methods used in the project.</p>-->
                 <p>
-                    This system is based around two Arduino boards, each with their own task. Arduino Uno R3 (shown in figure 1)
+                    This system is based around two Arduino boards, each with their own task. Arduino Uno R3 <a href="#ref2">[2]</a> (shown in figure 1)
                     has 5V PWM output that is used to control the temperature on the airheater. Uno can also take 5V input to 
                     read the temperature sensor of the airheater. 
                 </p>
@@ -110,16 +110,16 @@
                 </figure>
                 <p>
                     To send the data to ThingSpeak a second Arduino is implemented to the system. For wifi an 
-                    Arduino Nano IoT 33 RP2040 (shown in figure 2) is implemented to read the messages from the Arduino Uno 
+                    Arduino Nano RP2040 Connect <a href="#ref3">[3]</a> (shown in figure 2) is implemented to read the messages from the Arduino Uno 
                     and send the data to ThingSpeak. The Uno uses I2C, a wired short distance protocol to send data between 
                     devices. This allows the Uno to have a specific task, reading and controlling the airheater, and the Nano 
                     will only receive data from the Uno to send to the database. 
                 </p>
                 <figure>
-                    <img src="NanoRP2040.webp" alt="Figure of an Arduio Nano IoT 33 RP2040." style="width: 700px; min-width: 330px" />
-                    <figcaption>Figure 2: Overview of the Arduino Nano IoT 33 RP2040.</figcaption>
+                    <img src="NanoRP2040.webp" alt="Figure of an Arduio Nano RP2040 Connect." style="width: 700px; min-width: 330px" />
+                    <figcaption>Figure 2: Overview of the Arduino Nano RP2040 Connect.</figcaption>
                 </figure>
-                During testing of the systems performance a TMP36 temperature sensor (shown in figure 3) was used as the 
+                During testing of the systems performance a TMP36 temperature sensor <a href="#ref4">[4]</a> (shown in figure 3) was used as the 
                 control input to the system and voltage out was written to the serial monitor in Arduino IDE and it was measured
                 using a multimeter to ensure the output was the same as expected.
                 <figure>
@@ -127,7 +127,7 @@
                     <figcaption>Figure 3: Example of a temperature sensor, a TMP36.</figcaption>
                 </figure>
                 <p>
-                    Showing what data is being sent to ThingSpeak was done by connecting a 1.4 inch LCD display, 
+                    Showing what data is being sent to ThingSpeak <a href="#ref5">[5]</a> was done by connecting a 1.4 inch LCD display, 
                     similar to the one seen in figure 4, to the Nano board. 
                     Every datapoint sent to ThingSpeak was shown on the display to act as a human machine interface
                     (HMI). ThingSpeak allows new datapoints every 15 seconds if the user is running a free account. This 
@@ -138,7 +138,7 @@
                     <figcaption>Figure 4: An LCD screen similar to the one used in the system.</figcaption>
                 </figure>
                 <p>
-                    Airheater was provided by USN (shown in figure 5) and is a premade system built up of an electric heating 
+                    Airheater <a href="#ref6">[6]</a> was provided by USN (shown in figure 5) and is a premade system built up of an electric heating 
                     element, temperature sensor and an NI control system. It takes 0-5V as input for changing the electrical
                     heating element power and sends out a 1-5V output based on the temperature measured. Temperature range 
                     measured in the airheater is 20-50&deg;C.
@@ -201,6 +201,11 @@
                 <p>
                     Poorly tuned but who cares when the system is so slow. For a more dynamic system an Arduino could probably 
                     not be suitable as a PID controller do to the computations needed for dynamic systems.
+                    Initially the systems performance was alright due to the process being slow. Had it been a more dynamic 
+                    process it would require better tuning. But with more dynamic systems it might need more computational 
+                    power than an Arduino can deliver, making a PLC more suitable for more dynamic systems.
+                    <br>
+                    This could be of value to test, but is outside the scope if this system.
                 </p>
                 <p>
                     Lowpass filter on the temperature reading helped improve the stability of what temperature was read. It removed 
@@ -210,7 +215,7 @@
                 </p>
                 <br>
                 <p>
-                    An early prototype of the system planned to use an Arduino MKR NB 1500. It is a board with near band LTE integrated
+                    An early prototype of the system planned to use an Arduino MKR NB 1500 <a href="#ref7">[7]</a>. It is a board with near band LTE integrated
                     to handle both sending data to ThingSpeak and controlling the airheater. When working on this a problem with sending
                     data to ThingSpeak was noticed as it would only send data one or two times before the board stopped. This seems to
                     be a problem with the boards modem that crashes after some time. Other programs that does not use the modem will
@@ -220,14 +225,18 @@
                     Other issues was related to the airheater requiring 0-5V analog input to control it and a 1-5V output to read the 
                     temperature sensor. MKR boards do not support 5V analog input or output, making the reading and controlling of the 
                     airheater system difficult.
-                </p>
-                <p>
+                <br>
                     Labview Linx was another reason the MKR board was not used, as the Linx plug in only supports a set of older Arduino
                     boards such as the Uno and does not support wifi on any boards. Using an Uno and Nano together would allow the same 
                     online functionallity as long as the Uno could send data over I2C to the Nano board. 
                 </p>
                 <p>
-                    Improvements/Future works
+                    <!--Improvements/Future works-->
+                    For future improvements the system could be better tuned to see how different the response could be to the current set up. 
+                    This might not add anything to the system due to the slow performance of the system, but could be interesting. 
+                    <br>
+                    Other improvements could be to change the Arduino boards if it is of value to have one board powering everything. This 
+                    could be benefitial to reduce failure points or to save on costs.ß
                 </p>
             </section>
 
@@ -235,17 +244,56 @@
                 <h2>Conclusion</h2>
                 <!--<p>Conclusion summarizing the main findings and outcomes.</p>-->
                 <p>
-                    Arduino works as a PID controller. Could be better tuned. For internett access an IoT board is needed.
+                    <!--Arduino works as a PID controller. Could be better tuned. For internett access an IoT board is needed.
                     Labview was not preffered and worked, but not very well. I2C made the system easier to work with as the 
-                    workload was spread out to different boards.
+                    workload was spread out to different boards.-->
+                    Using an Arduino as a PID controller works well due to slow performance of the system and the simplicity of
+                    PID controllers. The gains used for the PID controller can possibly be improved as they were chosen at random initially 
+                    and never improved upon. As the system needed internett access to send the measurement data to the cloud, an IoT
+                    board was used specifically for this purpose. This adds an additional point of failure and cost, but allows the systems
+                    resources to be separated to each Arduino board, making it easier to remove or replace one part of the system without 
+                    affecting the other.
                 </p>
             </section>
 
             <section id="references">
                 <h2>References</h2>
                 <ol>
-                    <li><a href="https://www.halvorsen.blog/documents/teaching/courses/iot/website.php">Halvorsen.Blogg Assignment page</a></li>
-                    <li><a href="https://www.example.com">Example page</a></li>
+                    <li id="ref1">
+                      T. Halvorsen, "IoT Course Resources," Halvorsen Blog. [Online]. Available: 
+                      <a href="https://www.halvorsen.blog/documents/teaching/courses/iot/website.php">
+                      https://www.halvorsen.blog/documents/teaching/courses/iot/website.php</a>. [Accessed: Dec. 3, 2024].
+                    </li>
+                    <li id="ref2">
+                      "Arduino Uno Rev3," Arduino Store. [Online]. Available: 
+                      <a href="https://store.arduino.cc/products/arduino-uno-rev3?srsltid=AfmBOoq9I2ZQ_6hLd9p8pAZ90eT7WoLW2RNih155iZAbEMJAm9Ondr9G">
+                      https://store.arduino.cc/products/arduino-uno-rev3</a>. [Accessed: Dec. 3, 2024].
+                    </li>
+                    <li id="ref3">
+                      "Arduino Nano RP2040 Connect," Arduino Documentation. [Online]. Available: 
+                      <a href="https://docs.arduino.cc/hardware/nano-rp2040-connect/">
+                      https://docs.arduino.cc/hardware/nano-rp2040-connect/</a>. [Accessed: Dec. 3, 2024].
+                    </li>
+                    <li id="ref4">
+                      "TMP35/TMP36/TMP37 Data Sheet," Analog Devices. [Online]. Available: 
+                      <a href="https://www.analog.com/media/en/technical-documentation/data-sheets/TMP35_36_37.pdf">
+                      https://www.analog.com/media/en/technical-documentation/data-sheets/TMP35_36_37.pdf</a>. [Accessed: Dec. 3, 2024].
+                    </li>
+                    <li id="ref5">
+                      "Learn More About ThingSpeak," MathWorks. [Online]. Available: 
+                      <a href="https://thingspeak.mathworks.com/pages/learn_more">
+                      https://thingspeak.mathworks.com/pages/learn_more</a>. [Accessed: Dec. 3, 2024].
+                    </li>
+                    <li id="ref6">
+                      T. Halvorsen, "Air Heater System," Halvorsen Blog. [Online]. Available: 
+                      <a href="https://www.halvorsen.blog/documents/hardware/air_heater/Air%20Heater%20System.pdf">
+                      https://www.halvorsen.blog/documents/hardware/air_heater/Air%20Heater%20System.pdf</a>. [Accessed: Dec. 3, 2024].
+                    </li>
+                    <li id="ref7">
+                      "Arduino MKR NB 1500," Arduino Store. [Online]. Available: 
+                      <a href="https://store.arduino.cc/products/arduino-mkr-nb-1500?srsltid=AfmBOoq4eu4QfEQ-KQ99ThRANwZmebW6sdDiwxLyJu-ni4Akd9u6yzeM">
+                      https://store.arduino.cc/products/arduino-mkr-nb-1500</a>. [Accessed: Dec. 3, 2024].
+                    </li>
                 </ol>
             </section>
         </main>
